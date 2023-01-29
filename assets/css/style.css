@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    max-width: 1440px;
+    width: 90%;
+    margin: auto;
+}
+
+.main-heading{
+    text-align: center;
+    margin-top: 3rem;
+    background-color: rgb(189, 167, 167);
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-evenly;
+    border: 3px solid black;
+    padding: 1.1rem;
+    margin-top: 3rem; 
+    overflow:scroll;   
+}
+
+.inputContainer div{
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputContainer div input, select{
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    width: 80%;
+}
+
+.inputContainer button{
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    background-color: rgb(122, 72, 72);
+    color: white;
+    font-size: medium;
+}
+
+.inputContainer button:hover{
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    background-color: rgb(60, 44, 44);
+    color: white;
+    font-size: medium;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .inputContainer div input, select{
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        width: 60%;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .inputContainer{
+        height: 70vh;
+    }
+    .inputContainer div input, select{
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        width: 60%;
+    }
+
+    h1{
+        font-size: 20px;
+    }
+}
+
+.table-container{
+    margin: 5rem 0;
+    border: 2px solid black;
+    padding: 2rem;
+    overflow:scroll;
+}
+
+.table-container table {
+    width: 100%;
+  }
+  
+  .table-container td,  .table-container th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .table-container tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .table-container tr:hover {background-color: #ddd;}
+  
+  .table-container th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #1C1427;
+    color: white;
+  }

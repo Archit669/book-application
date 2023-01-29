@@ -1,42 +1,22 @@
-const inputObjArr = [
-    {
-        key: "ISBN",
-        type : NUMBER
-    },
-    {   
-        key : "Author Name",
-        type : TEXT
-    },
-    {
-        key : "Book Name",
-        type : TEXT
-    },
-    {
-        key : "price",
-        type : NUMBER
-    },
-    {
-        key : "pages",
-        type : NUMBER
-    },
-    {
-        key :  "Discount",
-        type : NUMBER
-    },
-    {
-        key : "Year of Publish",
-        type : DATE
-    },
-    {
-        key : "In Stock",
-        type : BOOLEAN
-    }
-];
-
 
 const inputArr = inputObjArr.map((element)=>{
     return getTag(element);
 })
 
+const inputContainer = document.getElementsByClassName("inputContainer")[0];
+inputArr.forEach((inputTag)=>{
+    inputContainer.append(inputTag);
+})
+
+const btn = document.createElement("button");
+btn.id = "inputContainerBtn";
+btn.innerText = "save";
+// btn.style.cursor = "not-allowed";
+inputContainer.appendChild(btn);
+
+const tableContainer = document.getElementById("table-container");
+const table = createTable();
+tableContainer.appendChild(table);
 
 
+btn.addEventListener("click", addData);

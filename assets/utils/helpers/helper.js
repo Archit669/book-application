@@ -1,7 +1,6 @@
-const {NUMBER, TEXT, DATE, BOOLEAN} = constants;
-
+// function to get tag from of input object
 function getTag(obj){
-    const {key, type} = obj;
+    const {key, type, id} = obj;
     let input = null;
     switch(type){
         case NUMBER:
@@ -10,22 +9,26 @@ function getTag(obj){
             input = document.createElement("input");
             input.type = type;
             input.name = key;
+            input.id = id;
             break;
 
         case BOOLEAN:
             input = document.createElement("select");
             input.name = key;
-            // option 1 
-            let option = document.createElement("option");
-            option.value = "true";
-            option.text = option.value;
-            input.append(option);
+            input.id = id;
 
-            // option 2
-            option = document.createElement("option");
-            option.value = "false";
-            option.text = option.value;
-            input.append(option);
+            const options = {
+                default : "choose option",
+                option1 : "true",
+                option2 : "false"
+            }
+
+            for (let option of Object.keys(options)){
+                let optionTag = document.createElement("option");
+                optionTag.value = options[option];
+                optionTag.text = optionTag.value;
+                input.append(optionTag);
+            }
 
             break;
 
@@ -35,7 +38,76 @@ function getTag(obj){
             input.type = TEXT;
             input.name = key;
             break;
+        }
+
+
+    const inputTagContainer  = document.createElement("div");
+    if (input){
+        const inputlabel = document.createElement("label");
+        inputlabel.setAttribute("for",id);
+        inputlabel.innerText = key;
+        inputTagContainer.append(inputlabel);
+        inputTagContainer.append(input);
     }
 
-    return input;
+    return inputTagContainer;
 }
+
+
+
+// function to create Table
+function createTable(){
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    for (let {key} of inputObjArr){
+        const th = document.createElement("th");
+        th.textContent = key;
+        thead.appendChild(th);
+    }
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+
+    return table;
+
+}
+
+// function to add Data in table
+function addData(){
+    const userdata = getData();
+    if (userdata.length != inputObjArr.length){
+        alert("please fill all the inputs");
+    }else{
+        const rows = document.querySelector("#table-container table tbody");
+        const tr = document.createElement("tr");
+        for (let data of userdata){
+            const td = document.createElement("td");
+            td.innerText =data;
+            tr.appendChild(td);
+        }
+        rows.append(tr);
+    }
+}
+
+// function to get Data from inputContainer
+function getData(){
+    const data = [];
+    for (let {id, type} of inputObjArr){
+        const tag = document.getElementById(`${id}`);
+        if (type == BOOLEAN){
+            let select = document.getElementById(`${id}`);
+            data.push(select.value);
+            select.val = '';
+        }else{
+            if (tag.value){
+                data.push(tag.value);
+                tag.value = '';
+            }
+        }
+    }
+    return data;
+}
+
+
