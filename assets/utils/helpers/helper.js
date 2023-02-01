@@ -88,6 +88,7 @@ function addData(){
             tr.appendChild(td);
         }
         rows.append(tr);
+        clearAllInputs();
     }
 }
 
@@ -99,15 +100,26 @@ function getData(){
         if (type == BOOLEAN){
             let select = document.getElementById(`${id}`);
             data.push(select.value);
-            select.val = '';
         }else{
             if (tag.value){
                 data.push(tag.value);
-                tag.value = '';
             }
         }
     }
     return data;
 }
 
+
+// function to clear all inputs
+function clearAllInputs(){
+    for (let {id , type} of inputObjArr){
+        const tag = document.getElementById(`${id}`);
+        if (type == BOOLEAN){
+            let select = document.getElementById(`${id}`);
+            select.val = '';
+        }else{
+            tag.value = '';
+        }
+    }
+}
 
